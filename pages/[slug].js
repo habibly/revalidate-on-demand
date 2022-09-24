@@ -7,9 +7,9 @@ const BlogDetails = ({ post }) => {
 export const getStaticPaths = async () => {
   const { data: posts } = await supabase.from("posts").select("*");
 
-  const paths = posts.map(({ id }) => ({
+  const paths = posts.map(({ slug }) => ({
     params: {
-      id,
+      slug,
     },
   }));
 
@@ -19,11 +19,11 @@ export const getStaticPaths = async () => {
   };
 };
 
-export const getStaticProps = async ({ params: { id } }) => {
+export const getStaticProps = async ({ params: { slug } }) => {
   const { data: post } = await supabase
     .from("posts")
     .select("*")
-    .match({ id })
+    .match({ slug })
     .single();
 
   if (!post) {
