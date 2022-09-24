@@ -1,7 +1,16 @@
 import supabase from "../utils/supabase";
 
 const BlogList = ({ posts }) => {
-  return <pre>{JSON.stringify(posts, null, 2)}</pre>;
+  return (
+    <div>
+      <pre>{JSON.stringify(posts, null, 2)}</pre>
+      {
+        posts.map(({ slug,content,title }) => {
+          <a href={'/'+slug}>{title} <br /> {content}</a>
+        })
+      }
+    </div>
+  );
 };
 
 export const getStaticProps = async () => {
