@@ -5,7 +5,7 @@ const BlogList = ({ posts }) => {
 };
 
 export const getStaticProps = async () => {
-  const { data: posts } = await supabase.from("posts").select("slug, title");
+  const { data: posts } = await supabase.from("posts").select("id, slug, title");
 
   return {
     props: {
