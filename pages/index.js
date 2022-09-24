@@ -1,15 +1,11 @@
 import supabase from "../utils/supabase";
 
 const BlogList = ({ posts }) => {
+  const blogs = posts.map((post) =>
+    <a href={'/'+post.slug} key={post.id}>{post.title}  <br /></a>
+  );
   return (
-    <div>
-      <pre>{JSON.stringify(posts, null, 2)}</pre>
-      {
-        posts.map(({ slug,content,title }) => {
-          <a href={'/'+slug}>{title} <br /> {content}</a>
-        })
-      }
-    </div>
+      <div>{blogs}</div>
   );
 };
 
